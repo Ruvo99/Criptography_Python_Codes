@@ -1,0 +1,19 @@
+a = eval(input("Ingrese un número: "))
+b = eval(input("Ingrese otro número: "))
+
+if(b > a):
+    temp = a
+    a = b
+    b = temp
+
+def MCD(a, b):
+    q = a // b
+    r = a % b
+    print(str(a) + " = " + str(q) + " x " + str(b) + " + " + str(r))
+    
+    if(b % r == 0):
+        return r
+    else:
+        return MCD(b, r)
+
+MCD(a,b)
