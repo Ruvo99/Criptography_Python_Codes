@@ -1,0 +1,67 @@
+a = eval(input("Ingrese un número: "))
+b = eval(input("Ingrese otro número: "))
+
+if(b > a):
+    temp = a
+    a = b
+    b = temp
+    
+x0 = 1
+y0 = 0
+x1 = 0
+y1 = 1
+
+def MCD(a, b):
+    q = a // b
+    r = a % b
+    global x0, y0, x1, y1
+    #print("ECUACIÓN:")
+    #print(str(a) + " = " + str(q) + " x " + str(b) + " + " + str(r))
+    x = x0 - q * x1
+    y = y0 - q * y1
+    #print("NUMEROS DE BÉZOUT:")
+    #print("x = " + str(x0) + " - " + str(q) + " x " + str(x1))
+    #print("y = " + str(y0) + " - " + str(q) + " x " + str(y1))
+    if(b % r == 0):
+        return [r, x, y]
+    else:
+        x0 = x1
+        x1 = x
+        y0 = y1
+        y1 = y
+        return MCD(b, r)
+
+lista = MCD(a,b)
+
+print("MCD = " + str(lista[0]))
+print("X = " + str(lista[1]))
+print("Y = " + str(lista[2]))
+
+if(lista[0] == 1 and lista[1] > 0 and lista[2] > 0):
+    print("CALCULANDO INVERSO MODULAR...")
+    print("x * a = 1 % b: " + str(lista[1]) + " x " + str(a) + " = " + str(1) + " % " + str(b))
+    print("Por lo tanto... " + str(lista[1]*a) + " % " + str(b) + " = 1")
+    print("INVERSO MODULAR DE " + str(a) + "(A % B)= " + str(lista[1]))
+    print("y * b = 1 % a: " + str(lista[2]) + " x " + str(b) + " = " + str(1) + " % " + str(a))
+    print("Por lo tanto... " + str(lista[2]*b) + " % " + str(a) + " = 1")
+    print("INVERSO MODULAR DE " + str(b) + "(B % A) = " + str(lista[2]))
+elif(lista[0] == 1 and lista[1] < 0 and lista[2] > 0):
+    lista[1] += b
+    print("CALCULANDO INVERSO MODULAR...")
+    print("x * a = 1 % b: " + str(lista[1]) + " x " + str(a) + " = " + str(1) + " % " + str(b))
+    print("Por lo tanto... " + str(lista[1]*a) + " % " + str(b) + " = 1")
+    print("INVERSO MODULAR DE " + str(a) + "(A % B)= " + str(lista[1]))
+    print("y * b = 1 % a: " + str(lista[2]) + " x " + str(b) + " = " + str(1) + " % " + str(a))
+    print("Por lo tanto... " + str(lista[2]*b) + " % " + str(a) + " = 1")
+    print("INVERSO MODULAR DE " + str(b) + "(B % A) = " + str(lista[2]))
+elif(lista[0] == 1 and lista[1] > 0 and lista[2] < 0):
+    lista[2] += a
+    print("CALCULANDO INVERSO MODULAR...")
+    print("x * a = 1 % b: " + str(lista[1]) + " x " + str(a) + " = " + str(1) + " % " + str(b))
+    print("Por lo tanto... " + str(lista[1]*a) + " % " + str(b) + " = 1")
+    print("INVERSO MODULAR DE " + str(a) + "(A % B)= " + str(lista[1]))
+    print("y * b = 1 % a: " + str(lista[2]) + " x " + str(b) + " = " + str(1) + " % " + str(a))
+    print("Por lo tanto... " + str(lista[2]*b) + " % " + str(a) + " = 1")
+    print("INVERSO MODULAR DE " + str(b) + "(B % A) = " + str(lista[2]))
+else:
+    print("No existe un inverso modular") 
