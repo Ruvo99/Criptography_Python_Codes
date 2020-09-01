@@ -61,4 +61,4 @@ elif(lista[0] == 1 and lista[1] > 0 and lista[2] <= 0):
     print("Por lo tanto... " + str(lista[2]*b) + " % " + str(a) + " = 1")
     print("INVERSO MODULAR DE " + str(b) + "(B % A) = " + str(lista[2]))
 else:
-    print("No existe un inverso modular")
+    print("No existe un inverso modular") 
